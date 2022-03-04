@@ -101,3 +101,64 @@ function get_competence_pro(int $id_entreprise):array{
     if ($result != null) return $result;
     else return array();
 }
+
+function get_nbre_folio():int{
+    $sql = connect()->prepare("SELECT * FROM folio");
+    $sql->execute();
+    $result = $sql->rowCount();
+    $sql->closeCursor();
+    return $result;
+}
+
+/**
+ * Type de l'image
+ *
+ * @param string $img
+ * @return boolean
+ */
+function imgType(string $img): bool
+{
+    $extension = strtolower(pathinfo($img, PATHINFO_EXTENSION));
+    $valide = array('jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG', 'gif', 'GIF');
+
+    if (in_array($extension, $valide))
+        return true;
+    else
+        return false;
+}
+
+function save_img_folio( array $img ):String{
+    $image = $img['name'];
+    if( (imgType( $image )== true) && ( $img['size'] <= 10547290 ) ){
+        $exten = pathinfo($image, PATHINFO_EXTENSION);
+        $nbfolio = get_nbre_folio();
+        $profile = "$nbfolio-folio.$exten";
+        try {
+            $upload = "../vue/image/" . $profile;
+            move_uploaded_file($img['tmp_name'], $upload);
+            return $profile;
+        } catch (\Throwable $th) {
+            return '';
+        }
+    }else return '';
+}
+
+function insertion(array $tab, String $type):bool{
+    if($type == 'newfolio'){
+        $sql = connect()->prepare("INSERT INTO folio(lien_site, lien_img, titre) VALUES(?, ?, ?)");
+    }elseif($type == 'newcompetence'){
+        $sql = connect()->prepare("INSERT INTO competence(id_users, titre) VALUES(?, ?)");
+    }elseif($type == 'newentrprise'){
+        $sql = connect()->prepare("INSERT INTO entreprise(id_users, nom, address) VALUES(?, ?, ?)");
+    }elseif($type == 'newcompetencepro'){
+        $sql = connect()->prepare("INSERT INTO competence_pro(id_entreprise, tache, date_deb, date_fin) VALUES(?, ?, ?, ?)");
+    }else{
+        return false;
+    }
+    try{
+        $sql->execute($tab);
+        return true;
+    }catch(PDOException $e){
+        return false;
+    }
+} 
