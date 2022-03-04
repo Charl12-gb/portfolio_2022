@@ -1,0 +1,31 @@
+       /* Base */
+       
+       .specialtxt {
+           position: relative;
+           color: hsl(0, 0%, 68%);
+           font-weight: bold;
+           letter-spacing: 7px;
+           overflow: hidden;
+           font-size: 25px;
+           border-right: 2px solid hsl(0, 0%, 80%);
+           white-space: nowrap;
+           animation: typewriter 4s steps(45) 1s 1 normal both, blinkTextCursor 500ms infinite;
+       }
+       
+       @keyframes typewriter {
+           from {
+               width: 0;
+           }
+           to {
+               width: 745px;
+           }
+       }
+       
+       @keyframes blinkTextCursor {
+           from {
+               border-right-color: hsl(0, 0%, 80%);
+           }
+           to {
+               border-right-color: transparent;
+           }
+       }
