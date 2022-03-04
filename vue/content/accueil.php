@@ -3,12 +3,11 @@
 
 
     <div class="w-48 h-48 rounded-full mb-6 bg-red-100">
-        <img src="https://showfolio.vercel.app/photo.png" class="w-full p-2 h-full object-contain" alt="John Doe" />
+        <img src="../../vue/image/<?= get_link_img(); ?>" class="w-full p-2 h-full object-contain" alt="<?= get_name() ?>" />
     </div>
 
-
     <h1 class="text-2xl font-bold text-center mb-4 specialtxt">
-        Hey👋Ici c'est <strong class="block text-indigo-600 xl:inline">Ornella AHOUANDOGBO</strong> ...
+        Hey👋Ici c'est <strong class="block text-indigo-600 xl:inline"><?= get_name() ?></strong> ...
     </h1>
     <div class="text-5xl md:text-6xl font-bold text-center max-w-3xl mb-4 relative">
         <div class="absolute top-10 opacity-20 transform left-1/2 -translate-x-1/2 text-red-300 z-0 w-full">
@@ -18,49 +17,64 @@
         </div>
         <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
                         <span class="block xl:inline">Analyste </span>
-                        <span class="block text-indigo-600 xl:inline">Programmeur</span>
+                        <span class="block text-pink-600 xl:inline">Programmeur</span>
                     </h1>
     </div>
     <p class="font-light text-center max-w-sm mb-8">
-        Develop functional user interfaces and provide a valuable experience to customers.
-        Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua
+        <?= get_descriptions(); ?>
     </p>
 
 
-    <a href="https://twitter.com/" rel="noopener noreferrer" target="_blank" class="px-6 py-4 rounded-full font-semibold text-lg bg-black text-white hover:bg-gray-800 transition-colors dark:bg-white dark:text-black dark:hover:bg-gray-200">Parle-moi</a>
+    <a href="https://linkedin.com/" rel="noopener noreferrer" target="_blank" class="px-6 py-4 rounded-full font-semibold text-lg bg-black text-white hover:bg-gray-800 transition-colors dark:bg-white dark:text-black dark:hover:bg-gray-200">Parle-moi</a>
 
 </section>
 
 
 <section class="grid grid-cols-2 md:grid-cols-3 gap-4 my-8 max-w-5xl mx-auto" style="min-height: 300px">
 
-
-    <div class="relative  shadow-sm md:shadow-2xl">
-        <img class="rounded object-cover w-full h-full" loading="lazy" src="https://codepen.io/apvarun/pen/MQaRKL/image/small.png" />
+<?php  
+    $i = 0;
+    foreach (get_folio() as $key => $value) {
+        if($i == 0){
+        ?>
+<div class="relative  shadow-sm md:shadow-2xl">
+        <img class="rounded object-cover w-full h-full" loading="lazy" src="../../vue/image/<?= $value['lien_img'] ?>" />
         <div class="absolute top-0 left-0 rounded w-full h-full bg-black bg-opacity-30 grid place-items-center opacity-0 hover:opacity-100 transition-opacity duration-200">
-            <a class="px-6 py-2 rounded-full bg-black text-white" href="https://codepen.io/apvarun/pen/MQaRKL" target="_blank" rel="noopener noreferrer">View in Codepen</a>
+            <a class="px-6 py-2 rounded-full bg-black text-white" href="<?= $value['lien_site'] ?>" target="_blank" rel="noopener noreferrer"><strong class="block text-pink-300 xl:inline">Consuler <?= $value['titre'] ?></strong></a>
         </div>
     </div>
-
-    <div class="relative row-span-2 shadow-sm md:shadow-2xl">
-        <img class="rounded object-cover w-full h-full" loading="lazy" src="https://codepen.io/apvarun/pen/RxodrP/image/small.png" />
+        <?php
+        }else if($i == 1){
+            ?>
+<div class="relative row-span-2 shadow-sm md:shadow-2xl">
+        <img class="rounded object-cover w-full h-full" loading="lazy" src="../../vue/image/<?= $value['lien_img'] ?>" />
         <div class="absolute top-0 left-0 rounded w-full h-full bg-black bg-opacity-30 grid place-items-center opacity-0 hover:opacity-100 transition-opacity duration-200">
-            <a class="px-6 py-2 rounded-full bg-black text-white" href="https://codepen.io/apvarun/pen/RxodrP" target="_blank" rel="noopener noreferrer">View in Codepen</a>
+            <a class="px-6 py-2 rounded-full bg-black text-white" href="<?= $value['lien_site'] ?>" target="_blank" rel="noopener noreferrer"><strong class="block text-pink-300 xl:inline">Consuler <?= $value['titre'] ?></strong></a>
         </div>
     </div>
-
-    <div class="relative  shadow-sm md:shadow-2xl">
-        <img class="rounded object-cover w-full h-full" loading="lazy" src="https://codepen.io/apvarun/pen/BmXGdm/image/small.png" />
+            <?php
+        }else if($i == 2){
+            ?>
+<div class="relative  shadow-sm md:shadow-2xl">
+        <img class="rounded object-cover w-full h-full" loading="lazy" src="../../vue/image/<?= $value['lien_img'] ?>" />
         <div class="absolute top-0 left-0 rounded w-full h-full bg-black bg-opacity-30 grid place-items-center opacity-0 hover:opacity-100 transition-opacity duration-200">
-            <a class="px-6 py-2 rounded-full bg-black text-white" href="https://codepen.io/apvarun/pen/BmXGdm" target="_blank" rel="noopener noreferrer">View in Codepen</a>
+            <a class="px-6 py-2 rounded-full bg-black text-white" href="<?= $value['lien_site'] ?>" target="_blank" rel="noopener noreferrer"><strong class="block text-pink-300 xl:inline">Consuler <?= $value['titre'] ?></strong></a>
         </div>
     </div>
-
-    <div class="relative  shadow-sm md:shadow-2xl">
-        <img class="rounded object-cover w-full h-full" loading="lazy" src="https://codepen.io/apvarun/pen/wdVypQ/image/small.png" />
+            <?php
+        }else if($i == 3){
+            ?>
+ <div class="relative  shadow-sm md:shadow-2xl">
+        <img class="rounded object-cover w-full h-full" loading="lazy" src="../../vue/image/<?= $value['lien_img'] ?>" />
         <div class="absolute top-0 left-0 rounded w-full h-full bg-black bg-opacity-30 grid place-items-center opacity-0 hover:opacity-100 transition-opacity duration-200">
-            <a class="px-6 py-2 rounded-full bg-black text-white" href="https://codepen.io/apvarun/pen/wdVypQ" target="_blank" rel="noopener noreferrer">View in Codepen</a>
+            <a class="px-6 py-2 rounded-full bg-black text-white" href="<?= $value['lien_site'] ?>" target="_blank" rel="noopener noreferrer"><strong class="block text-pink-300 xl:inline">Consuler <?= $value['titre'] ?></strong></a>
         </div>
     </div>
+            <?php
+            $i = 0;
+        }
+        $i++;
+    }
+?>
 </section>
 </main>

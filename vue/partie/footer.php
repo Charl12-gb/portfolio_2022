@@ -4,32 +4,40 @@
         <div class="grid grid-cols-2 gap-4">
             <div>
                 <div class="text-2xl font-semibold mb-4">Expérience professionnelle</div>
-                <div>
-                    <div class="text-xl font-bold my-2">Google</div>
-                    <p class="my-1 font-light">Product Engineer</p>
-                    <p class="text-gray-500 my-1">Nov 2019 - Apr 2021</p>
-                </div>
-
-                <div>
-                    <div class="text-xl font-bold my-2">Amazon</div>
-                    <p class="my-1 font-light">Sr. UX Designer</p>
-                    <p class="text-gray-500 my-1">Jan 2016 - Oct 2019</p>
-                </div>
+                <?php  
+                    foreach (get_entreprise() as $key => $value) {
+                        ?>
+                        <div>
+                            <div class="text-xl font-bold my-2"><?= $value['nom'] ?></div>
+                            <?php 
+                            foreach (get_competence_pro($value['id']) as $key => $val) {
+                                ?>
+                                <p class="my-1 font-light"><?= $val['tache'] ?></p>
+                                <p class="text-gray-500 my-1"><?= $val['date_deb'] ?> - <?= $val['date_fin'] ?></p>
+                                <?php
+                            }
+                            ?>
+                        </div>
+                        <?php
+                    }
+                ?>
             </div>
             <div>
                 <div class="text-2xl font-semibold mb-4">Compétences</div>
-
-                <div class="text-xl font-light my-2">Visual Design</div>
-
-                <div class="text-xl font-light my-2">Product Development</div>
-
+                <?php
+                    foreach (get_competence() as $key => $value) {
+                       ?>
+                            <div class="text-xl font-light my-2"><?= $value['titre'] ?></div>
+                       <?php
+                    }
+                ?>
             </div>
 
         </div>
     </section>
     <section class="my-16 max-w-2xl mx-auto">
         <div class="text-4xl font-bold text-center">
-            <a class="text-5xl text-blue-400 hover:text-blue-ª00" href="mailto:name@example.com">Discutons 📨</a>
+            <a class="text-5xl text-blue-400 hover:text-blue-ª00" href="mailto:<?= get_email(); ?>">Discutons 📨</a>
         </div>
     </section>
     <section class="my-4">
@@ -69,7 +77,7 @@
     </main>
     <footer class="w-full text-center p-4 text-xs text-gray-400">
         <p>
-            Ornnella@AHOUANDOGBO-Porfolio
+            <?= get_name(); ?>-Porfolio
         </p>
     </footer>
 </div>
