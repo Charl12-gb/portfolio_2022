@@ -162,3 +162,13 @@ function insertion(array $tab, String $type):bool{
         return false;
     }
 } 
+
+function delete_folio(int $id):bool {
+    $sql = connect()->prepare("DELETE FROM folio WHERE id = ?");
+    try {
+        $sql->execute([$id]);
+        return true;
+    } catch (\Throwable $th) {
+        return false;
+    }
+}

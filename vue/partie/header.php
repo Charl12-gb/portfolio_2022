@@ -16,7 +16,7 @@
         <nav class="flex items-center justify-between flex-wrap">
             <div class="flex gap-2 items-center">
 
-                <a href="mailto:name@example.com" aria-label="EMail">
+                <a href="mailto:<?= get_email(); ?>" aria-label="EMail">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <circle cx="12" cy="12" r="4" />
@@ -24,7 +24,7 @@
                     </svg>
                 </a>
 
-                <a href="https://showfolio.vercel.app/" class="flex items-center font-bold">
+                <a href="../../portfolio/accueil/" class="flex items-center font-bold">
                     PortFolio
                 </a>
             </div>
@@ -32,12 +32,11 @@
             <ul id="nav-menu" class="flex w-auto mt-0 space-x-2">
 
                 <li>
-                    <a href="https://showfolio.vercel.app/about/" class="hover:text-blue-800 dark:hover:text-blue-300">About Me</a>
+                    <a href="../../portfolio/accueil/" class="hover:text-blue-800 dark:hover:text-indigo-300">Accueil</a>
                 </li>
 
-
                 <li>
-                    <a href="https://showfolio.vercel.app/blog/" class="hover:text-blue-800 dark:hover:text-blue-300">Contact</a>
+                    <a href="../../portfolio/about/" class="hover:text-blue-800 dark:hover:text-indigo-300 ml-4">About Me</a>
                 </li>
 
             </ul>

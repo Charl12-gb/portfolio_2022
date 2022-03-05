@@ -90,7 +90,11 @@
                                     </td>
                                     <td class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white"><?= $value['lien_site'] ?></td>
                                     <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                                        <a href="../../modele/connect.php?action=delete&i=<?= $value['id'] ?>" class="text-red-600 dark:text-red-500 hover:underline">Delete</a>
+                                        <form method="post" action="../../modele/connect.php">
+                                            <input type="hidden" name="_action" id="_action" value="delete">
+                                            <input type="hidden" name="iddel" id="iddel" value="<?= $value['id'] ?>">
+                                            <button type="submit" class="text-red-600 dark:text-red-500 hover:underline">Delete</button>
+                                        </form>
                                     </td>
                                     <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
                                         <a href="../../portfolio/updateFolio?i=<?= $value['id'] ?>" class="text-blue-600 dark:text-blue-500 hover:underline">Edit</a>

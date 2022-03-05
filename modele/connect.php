@@ -1,6 +1,5 @@
 <?php 
 require_once('functions.php');
-
 if( isset( $_POST['_action'] ) ){
     if( $_POST['_action'] == 'connect_membre'){
         if( !empty( $_POST['email']) && !empty( $_POST['passwd']) ){
@@ -20,6 +19,16 @@ if( isset( $_POST['_action'] ) ){
         }else{
             // Redirection vers connection
             header('Location: ../portfolio/connexion/?error');
+            exit;
+        }
+    }else if($_POST['_action'] == 'delete'){
+        $id_folio = htmlspecialchars($_POST['iddel']);
+        $ok = delete_folio( $id_folio );
+        if($ok){
+            header('Location: ../portfolio/admin/?success');
+            exit;
+        }else{
+            header('Location: ../portfolio/admin/?error');
             exit;
         }
     }else{
